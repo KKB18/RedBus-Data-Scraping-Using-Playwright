@@ -1,0 +1,40 @@
+{
+  "name": "noesys",
+  "version": "1.0.0",
+  "main": "index.js",
+  "format": "prettier --write \"/*.{ts,tsx,css,html}\" ",
+  "scripts": {
+    "pretest": "rimraf ScreenShots && rimraf src/test/helper/testData/systemInfo.json && npx ts-node src/test/helper/report/init.ts",
+    "test": "cucumber-js test --config=cucumber.js || exit /b 0",
+    "posttest": "npx ts-node src/test/helper/report/report.ts && powershell Invoke-Item -Path test-results/reports/index.html",
+    "test:failed": "cucumber-js -p rerun @rerun.txt || exit /b 0",
+    "posttest:failed": "npx ts-node src/test/helper/report/report.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@cucumber/cucumber": "^11.3.0",
+    "@cucumber/pretty-formatter": "^1.0.1",
+    "@playwright/test": "^1.53.2",
+    "@types/node": "^24.0.10",
+    "@types/winston": "^2.4.4",
+    "eslint-plugin-cucumber": "^2.0.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3",
+    "winston": "^3.17.0"
+  },
+  "dependencies": {
+    "@types/fs-extra": "^11.0.4",
+    "cross-env": "^7.0.3",
+    "cucumber": "^6.0.7",
+    "cucumber-console-formatter": "^1.0.0",
+    "cucumber-html-reporter": "^7.2.0",
+    "date-and-time": "^3.6.0",
+    "dotenv": "^17.0.1",
+    "fs": "^0.0.1-security",
+    "multiple-cucumber-html-reporter": "^3.9.3",
+    "screen-resolution": "^1.0.0"
+  }
+}
